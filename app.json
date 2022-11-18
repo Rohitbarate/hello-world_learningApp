@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "helloWorld",
-    "slug": "helloWorld",
+    "owner": "mrperfect",
+    "name": "Hello World - learn coding",
+    "slug": "hello_World-learn_coding",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
