@@ -15,7 +15,8 @@ import YoutubePlayer from "react-native-youtube-iframe";
 export default function Download({ route }) {
   const { width, height } = Dimensions.get("window");
 
-  const { link, mentor, videoLink, desc } = route.params;
+  // const { link, mentor, videoLink, desc } = route.params;
+  const { link, mentor, videoLink, description } = route.params.course;
   const [playing, setPlaying] = useState(false);
   const [isReady, SetIsReady] = useState(false);
 
@@ -81,13 +82,13 @@ export default function Download({ route }) {
       </Text>
       <ScrollView
         contentContainerStyle={{
-          width: 360,
+          width: width,
           marginBottom: 10,
           paddingBottom: 10,
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.desc}>{desc}</Text>
+        <Text style={styles.desc}>{description}</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {

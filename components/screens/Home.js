@@ -7,12 +7,14 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  Dimensions
 } from "react-native";
 import topCourses from "../api/topCourses";
 import courseTypes from "../api/courseTypes";
 import { Video } from "expo-av";
 
 const Home = ({ navigation }) => {
+  const { width, height } = Dimensions.get("window");
   const courseBox = ({ item }) => {
     return (
       <TouchableOpacity
@@ -74,7 +76,7 @@ const Home = ({ navigation }) => {
         contentContainerStyle={{
           display: "flex",
           alignItems: "center",
-          width: 360,
+          width: width,
           justifyContent: "flex-start",
           marginBottom:10,
           paddingBottom:10

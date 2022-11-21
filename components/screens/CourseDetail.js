@@ -153,11 +153,7 @@ const CourseDetail = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("CourseVideo", {
-              name: selectCourse.courseName,
-              link: selectCourse.link,
-              mentor: selectCourse.mentor,
-              videoLink: selectCourse.videoLink,
-              desc:selectCourse.description
+              course:selectCourse
             })
           }
           style={styles.button}
