@@ -8,11 +8,14 @@ import {
   Linking,
   ActivityIndicator,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function Download({ route }) {
-  const { link, mentor, videoLink,desc } = route.params;
+  const { width, height } = Dimensions.get("window");
+
+  const { link, mentor, videoLink, desc } = route.params;
   const [playing, setPlaying] = useState(false);
   const [isReady, SetIsReady] = useState(false);
 
@@ -27,30 +30,28 @@ export default function Download({ route }) {
     setPlaying((prev) => !prev);
   }, []);
 
-  const onFullScreen = (fullScreen) => {
-    console.log("fullscreen ", fullScreen);
-  };
-
   return (
     <View
       style={{
-        display: "flex",
+        flex: 1,
         flexDirection: "column",
         paddingTop: 20,
-        height:'100%'
+        paddingHorizontal: 10,
+        height: height,
+        alignItems:'center'
       }}
-     >
+    >
       <Text style={styles.Text}> This is the best course for you </Text>
       <YoutubePlayer
+        width={width-10}
         height={200}
         play={playing}
         videoId={link}
         onChangeState={onStateChange}
-        onFullScreenChange={onFullScreen}
         style={styles.video}
         onReady={() => SetIsReady(true)}
       />
-       {!isReady && (
+      {!isReady && (
         <View>
           <ActivityIndicator color="#e76015" size={48} />
           <Text
@@ -58,7 +59,7 @@ export default function Download({ route }) {
               textAlign: "center",
               fontSize: 16,
               fontFamily: "JosefinSans-semiBold",
-              paddingVertical:10
+              paddingVertical: 10,
             }}
           >
             Loading video ....
@@ -68,27 +69,33 @@ export default function Download({ route }) {
       <Text style={styles.credit}>
         All credit :<Text style={styles.creditTo}> @{mentor}</Text>{" "}
       </Text>
-      <Text style={{ fontFamily: "JosefinSans-bold",
-    fontSize: 16,paddingHorizontal:16,marginBottom:5}} >About Course :</Text>
-      <ScrollView 
-      contentContainerStyle={{
-        width: 360,
-        marginBottom:10,
-        paddingBottom:10
-      }}
-      showsVerticalScrollIndicator={false}
-      >
-      <Text style={styles.desc} >
-            {desc}
-        </Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          Linking.openURL(`${videoLink}`);
+      <Text
+        style={{
+          fontFamily: "JosefinSans-bold",
+          fontSize: 16,
+          paddingHorizontal: 16,
+          marginBottom: 5,
         }}
       >
-        <Text style={styles.buttonText}> See full course playlist </Text>
-      </TouchableOpacity>
+        About Course :
+      </Text>
+      <ScrollView
+        contentContainerStyle={{
+          width: 360,
+          marginBottom: 10,
+          paddingBottom: 10,
+        }}
+        showsVerticalScrollIndicator={false}
+      >
+        <Text style={styles.desc}>{desc}</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            Linking.openURL(`${videoLink}`);
+          }}
+        >
+          <Text style={styles.buttonText}> See full course playlist </Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -108,7 +115,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   Text: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: "JosefinSans-bold",
     textAlign: "center",
     marginVertical: 20,
@@ -123,9 +130,9 @@ const styles = StyleSheet.create({
   creditTo: {
     fontFamily: "JosefinSans-semiBold",
     fontSize: 16,
-    color:'#e76015',
-    textDecorationLine:'underline',
-    // textDecorationColor:'#e76015'
+    color: "#e76015",
+    textDecorationLine: "underline",
+    textDecorationColor:'#e76015'
   },
   videoView: {
     height: 400,
@@ -133,10 +140,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  desc:{
-    paddingHorizontal:16,
+  desc: {
+    paddingHorizontal: 16,
     fontFamily: "JosefinSans-medium",
     fontSize: 12,
-    lineHeight:16
-  }
+    lineHeight: 16,
+  },
 });
