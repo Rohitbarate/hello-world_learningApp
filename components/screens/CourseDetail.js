@@ -152,7 +152,7 @@ const CourseDetail = ({ route, navigation }) => {
         </View>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("CourseVideo", {
+            navigation.push("CourseVideo", {
               course:selectCourse
             })
           }
