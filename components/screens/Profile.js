@@ -6,8 +6,8 @@ const Profile = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.profileRow}>
         <View style={{ display: "flex", flexDirection: "column" }}>
-          <Text style={styles.userName}>Rohit Barate</Text>
-          <Text style={styles.userEmail}>rohitbarate100@gmail.com</Text>
+          <Text style={styles.userName}>Chaitali</Text>
+          <Text style={styles.userEmail}>chaitali100@gmail.com</Text>
         </View>
         <Image
           source={require("../../assets/profile.png")}

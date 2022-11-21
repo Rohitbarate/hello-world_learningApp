@@ -67,7 +67,7 @@ const Home = ({ navigation }) => {
             fontFamily: "JosefinSans-medium",
           }}
         >
-          Rohit Barate
+          Chaitali
         </Text>
       </View>
       <ScrollView
