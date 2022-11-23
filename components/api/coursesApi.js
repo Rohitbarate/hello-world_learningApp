@@ -143,6 +143,32 @@ const courses = [
     mentor:'Code with Harry',
    videoLink :'https://youtu.be/cvvwkgp4HBg',
     level : "Medium"
+},
+    {
+    id:12,
+    courseName:"Complete java course",
+    img : "https://cdni.iconscout.com/illustration/premium/thumb/javascript-developer-5021659-4182858.png",
+    description: "This is the best web development course ever. you get all knowledge about the website development. you will learn HTML ,CSS , JAVASCRIPT and REACT.JS in this course.",
+    preReq :"HTML , CSS ",
+    price : 'FREE',
+    time: "2",
+     link:'yRpLlJmRo2w',
+    mentor:'Apna college',
+   videoLink :'https://youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop',
+    level : "Medium"
+},
+    {
+    id:13,
+    courseName:"Javascript Master Course - apna college",
+    img : "https://cdni.iconscout.com/illustration/premium/thumb/javascript-developer-5021659-4182858.png",
+    description: "This is the best web development course ever. you get all knowledge about the website development. you will learn HTML ,CSS , JAVASCRIPT and REACT.JS in this course.",
+    preReq :"HTML , CSS ",
+    price : 'FREE',
+    time: "2",
+     link:'B7wHpNUUT4Y',
+    mentor:'Apna college',
+   videoLink :'https://youtube.com/playlist?list=PL0rxPh2ovQP_JTqkFUtaZzBXzppx-VSWn',
+    level : "Medium"
 }
 ]
 

@@ -11,6 +11,7 @@ import {
   Dimensions,
 } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
+// import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function Download({ route }) {
   const { width, height } = Dimensions.get("window");
@@ -39,12 +40,12 @@ export default function Download({ route }) {
         paddingTop: 20,
         paddingHorizontal: 10,
         height: height,
-        alignItems:'center'
+        alignItems: "center",
       }}
     >
       <Text style={styles.Text}> This is the best course for you </Text>
       <YoutubePlayer
-        width={width-10}
+        width={width -20}
         height={200}
         play={playing}
         videoId={link}
@@ -52,6 +53,7 @@ export default function Download({ route }) {
         style={styles.video}
         onReady={() => SetIsReady(true)}
       />
+
       {!isReady && (
         <View>
           <ActivityIndicator color="#e76015" size={48} />
@@ -103,6 +105,7 @@ export default function Download({ route }) {
 }
 
 const styles = StyleSheet.create({
+
   button: {
     paddingHorizontal: 10,
     paddingVertical: 15,
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#e76015",
     textDecorationLine: "underline",
-    textDecorationColor:'#e76015'
+    textDecorationColor: "#e76015",
   },
   videoView: {
     height: 400,
