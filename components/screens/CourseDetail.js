@@ -11,9 +11,32 @@ import courses from "../api/coursesApi";
 
 const CourseDetail = ({ route, navigation }) => {
   const id = route.params.courseId;
-  const selectCourse = courses.find((course) => {
+  const bestVideo = courses.find((course) => {
     return course.id === id;
   });
+
+  // function for fetching best video
+  async function getBestVideo(query) {
+    let headersList = {
+        "Accept": "/",
+        "Content-Type": "application/json"
+       }
+       
+       let bodyContent = JSON.stringify({
+         "query":`${query}`,
+         "auth_token":"q50k48bs-g845ya-04-93f3c8611971"
+       });
+       
+       let response = await fetch("https://www.googleapis.com/auth/youtube/", { 
+         method: "GET",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       let bestVideo = await response.json();
+       return bestVideo;
+} 
+
 
   return (
     <View style={styles.container}>
@@ -30,7 +53,7 @@ const CourseDetail = ({ route, navigation }) => {
       </Text>
       <View style={styles.mainBox}>
         <View style={{ marginBottom: 10 }}>
-          <Text style={styles.courseName}>{selectCourse.courseName}</Text>
+          <Text style={styles.courseName}>{bestVideo.courseName}</Text>
           <Text
             style={{
               color: "#000a",
@@ -39,7 +62,7 @@ const CourseDetail = ({ route, navigation }) => {
             }}
           >
             {" "}
-            {selectCourse.description}{" "}
+            {bestVideo.description}{" "}
           </Text>
         </View>
         <View>
@@ -55,7 +78,7 @@ const CourseDetail = ({ route, navigation }) => {
               },
             ]}
           >
-            {"  "}@{selectCourse.mentor}{" "}
+            {"  "}@{bestVideo.mentor}{" "}
           </Text>
         </View>
       </View>
@@ -68,7 +91,7 @@ const CourseDetail = ({ route, navigation }) => {
             />
             <Text style={styles.heading}>Prerequisite :</Text>
           </View>
-          <Text style={styles.subHeading}>{selectCourse.preReq}</Text>
+          <Text style={styles.subHeading}>{bestVideo.preReq}</Text>
         </View>
         <View style={styles.prerView}>
           <View style={styles.row}>
@@ -100,7 +123,7 @@ const CourseDetail = ({ route, navigation }) => {
               source={require("../../assets/bar.png")}
               style={styles.iconFlex}
             />
-            <Text style={styles.heading}>{selectCourse.level} Level</Text>
+            <Text style={styles.heading}>{bestVideo.level} Level</Text>
           </View>
         </View>
         <View style={styles.prerView}>
@@ -110,11 +133,11 @@ const CourseDetail = ({ route, navigation }) => {
               style={styles.iconFlex}
             />
             <Text style={styles.heading}>
-              Approx. {selectCourse.time} months to complete
+              Approx. {bestVideo.time} months to complete
             </Text>
           </View>
           <Text style={styles.subHeading}>
-            Suggested {selectCourse.time * 8} hours/week
+            Suggested {bestVideo.time * 8} hours/week
           </Text>
         </View>
         <View style={styles.prerView}>
@@ -147,13 +170,13 @@ const CourseDetail = ({ route, navigation }) => {
               },
             ]}
           >
-            {selectCourse.price}
+            {bestVideo.price}
           </Text>
         </View>
         <TouchableOpacity
           onPress={() =>
             navigation.push("CourseVideo", {
-              course:selectCourse
+              course:bestVideo
             })
           }
           style={styles.button}
