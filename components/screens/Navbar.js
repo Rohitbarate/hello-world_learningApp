@@ -1,61 +1,71 @@
-import { StyleSheet, Text, View, TouchableOpacity , Image} from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Home from './Home'
+import Profile from './Profile';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Course from './Course';
+import Download from './Download';
 
 const Navbar = () => {
-    const navigation = useNavigation()
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.button} 
-            onPress={()=>{navigation.navigate('Home')}}  >
-             <Image source={ require('../../assets/home.png')} 
-             style={styles.icon}  />
-                <Text style={styles.buttonText}>Home</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} 
-             onPress={()=>{navigation.navigate('Courses')}}
-             >
-             <Image source={ require('../../assets/book.png')}style={styles.icon} />
-                <Text style={styles.buttonText}>Courses</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}
-            onPress={()=>{navigation.navigate('Download')}} >
-            <Image source={ require('../../assets/downloads.png')} style={{height:25,width:25,marginBottom:4}}/>
-                <Text style={styles.buttonText}>Downloads</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} 
-              onPress={()=>{navigation.navigate('Profile')}}
-             >
-            <Image source={ require('../../assets/profile.png')}
-            style={styles.icon} />
-                <Text style={styles.buttonText}>Profile</Text>
-            </TouchableOpacity>
-        </View>
-    )
+    const Tab = createBottomTabNavigator();
+
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        tabBarActiveTintColor: '#e76015',
+        headerShown:false,
+        tabBarLabelStyle:{
+          color:"#000"
+        }
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Courses"
+        component={Course}
+        options={{
+          tabBarLabel: 'Courses',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="list-alt" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Downloads"
+        component={Download}
+        options={{
+          tabBarLabel: 'Downloads',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="download" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size }) => (            
+          <Icon name="user-circle-o" color={color} size={size} />
+
+          ),
+        }}
+      />
+  </Tab.Navigator>
+  )
 }
 
 export default Navbar
 
-const styles = StyleSheet.create({
-    container: {
-        // height: '7%',
-        display:'flex',
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-around',
-        paddingVertical:5
-    },
-    button:{
-display:'flex',
-alignItems:'center',
-
-    },
-    icon:{
-        height:30,
-        width:30
-    },
-    buttonText:{
-        fontSize:12,
-        fontFamily:'JosefinSans-medium'
-    }
-})
+const styles = StyleSheet.create({})

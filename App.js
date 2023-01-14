@@ -1,15 +1,15 @@
 // import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,StatusBar } from 'react-native';
 import Home from './components/screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Course from './components/screens/Course';
 import CourseDetail from './components/screens/CourseDetail';
-import Navbar from './components/screens/Navbar';
 import CourseVideo from './components/screens/CourseVideo';
 import TopCourses from './components/screens/TopCourses';
 import Profile from './components/screens/Profile';
 import Download from './components/screens/Download';
+import Navbar from './components/screens/Navbar';
 import { useFonts } from 'expo-font';
 
 export default function App() {
@@ -30,10 +30,15 @@ export default function App() {
   
   return (
     <NavigationContainer>
-      {fontsLoaded && <Stack.Navigator initialRouteName='Home' screenOptions={{
+       <StatusBar 
+        backgroundColor="#e76015"
+        barStyle="light-content"
+        />
+      {fontsLoaded && <Stack.Navigator initialRouteName='Navbar' screenOptions={{
         headerShown: false,
         headerTitleStyle:{fontFamily:'JosefinSans-regular'}
       }}>
+       
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Courses' component={Course} options={{ headerTitleAlign: 'center' }} />
         <Stack.Screen name='Download' component={Download} options={{ headerTitleAlign: 'center', headerShown: true }} />
@@ -48,8 +53,11 @@ export default function App() {
         <Stack.Screen name='Profile' component={Profile}
           options={{ headerShown: true, headerTitleAlign: 'center' }}
         />
+        <Stack.Screen name='Navbar' component={Navbar}
+          options={{ headerShown: false }} 
+        />
       </Stack.Navigator>}
-      <Navbar />
+      {/* <Navbar /> */}
     </NavigationContainer>
   );
 }

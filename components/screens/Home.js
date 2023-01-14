@@ -50,7 +50,6 @@ const Home = ({ navigation }) => {
           alignItems: "flex-start",
           width: "100%",
           paddingLeft: 20,
-          marginBottom: 5,
         }}
       >
         <Text
